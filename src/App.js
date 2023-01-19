@@ -1,9 +1,10 @@
+import { url } from 'inspector';
 import { useState } from 'react';
 
 export default function App() {
   // const memeUrl =
   //   'https://api.memegen.link/images/doge/such_meme/very_skill.png';
-  const [meme, setMeme] = useState();
+  const [meme, setMeme] = useState('x');
 
   return (
     <div
@@ -11,7 +12,10 @@ export default function App() {
         height: '500vh',
         margin: '20px 40px',
         backgroundRepeat: 'no-repeat',
-        backgroundImage: `url("https://api.memegen.link/images/ds/high_quality/small_file.jpg")`,
+        backgroundImage: url(
+          `https://api.memegen.link/images/leo/I_have_no_idea/what_I_am_doing.png?watermark=memecomplete.com&token=wedunotcseojg5zii04y`,
+        ),
+        // `https://api.memegen.link/images/ds/high_quality/small_file.jpg`,
         fontWeight: '800',
         fontSize: '20px',
         letterSpacing: '2px',
@@ -25,9 +29,10 @@ export default function App() {
           alignItems: 'center',
           borderRadius: '20px',
         }}
-        onChange={(event) => {
-          console.log('event.currentTarget.value', event.currentTarget.value);
-        }}
+        // onChange={(event) => {
+        //   meme;
+        //   console.log('event.currentTarget.value', event.currentTarget.value);
+        // }}
       />
       <br />
       <p>Bottom text</p>
