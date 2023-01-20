@@ -1,65 +1,75 @@
-import { url } from 'inspector';
+// import { url } from 'inspector';
 import { useState } from 'react';
 
 export default function App() {
-  // const memeUrl =
-  //   'https://api.memegen.link/images/doge/such_meme/very_skill.png';
-  const [meme, setMeme] = useState('x');
-
+  const [imgUrl, setImgUrl] = useState(
+    'https://api.memegen.link/images/leo/I_have/_no_clue/.png',
+  );
+  const [topText, setTopText] = useState(
+    'https://api.memegen.link/images/doge.png',
+  );
+  const [bottomText, setBottomText] = useState('');
+  function memeGenerator() {
+    return (
+      <img
+        alt="the meme with your text"
+        src={`https://api.memegen.link/images/leo/${topText}/${bottomText}.png`}
+      />
+    );
+  }
+  console.log(topText, bottomText);
   return (
     <div
       style={{
         height: '500vh',
-        margin: '20px 40px',
+        margin: '00px 40px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
         backgroundRepeat: 'no-repeat',
-        backgroundImage: url(
-          `https://api.memegen.link/images/leo/I_have_no_idea/what_I_am_doing.png?watermark=memecomplete.com&token=wedunotcseojg5zii04y`,
-        ),
-        // `https://api.memegen.link/images/ds/high_quality/small_file.jpg`,
+        // backgroundImage: url(imgUrl),
         fontWeight: '800',
         fontSize: '20px',
         letterSpacing: '2px',
-        color: '#d90429',
+        color: 'Black',
       }}
     >
       <p>Top Text</p>
-      <input
+      <label htmlFor="Top text">
+        <input
+          onChange={() => setTopText(memeGenerator)}
+          value={topText}
+          style={{
+            alignItems: 'center',
+            borderRadius: '20px',
+          }}
+        />
+      </label>
+
+      <p>Bottom text</p>
+      <label htmlFor="Bottom text">
+        <input
+          onChange={(e) => setBottomText(memeGenerator)}
+          value={bottomText}
+          style={{ borderRadius: '20px' }}
+        />
+      </label>
+      <p>Meme template selector</p>
+      <select
         style={{
-          display: 'flex',
-          alignItems: 'center',
+          margin: '32px 0',
           borderRadius: '20px',
         }}
-        // onChange={(event) => {
-        //   meme;
-        //   console.log('event.currentTarget.value', event.currentTarget.value);
-        // }}
-      />
-      <br />
-      <p>Bottom text</p>
-      <input style={{ borderRadius: '20px' }} />
-      <br />
-      <selector style={{ color: '#2b2d42' }}>Meme template selector</selector>
-      <br />
+      >
+        Meme template selector
+      </select>
+
       <button
         style={{
           padding: '5px 20px',
           borderRadius: '20px',
           backgroundColor: '#8d99ae',
         }}
-        // onClick={async () => {
-        //   const res = await fetch(memeUrl);
-        //   const memeBlob = await res.blob();
-        //   const memeObjectURL = URL.createObjectURL(memeBlob);
-        //   setMeme(memeObjectURL);
-        //   useEffect(() => {
-        //     fetchMeme();
-        //   }, []);
-        //   return (
-        //     <>
-        //       <img data-test-id="meme-image" src={meme} alt="icons" />
-        //     </>
-        //   );
-        // }}
       >
         Generate
       </button>
@@ -73,27 +83,9 @@ export default function App() {
       >
         Submit
       </button>
+      <div>
+        <img alt="your meme will be here" src={imgUrl} />
+      </div>
     </div>
   );
-
-  /* Create a web app with React that allows for users to generate and download memes using the https://memegen.link/ website.
-
-It should allow the user to:
-
- Enter text for the top and bottom of the meme
- The top text box needs to have a label element associated with it containing the text Top text
- The bottom text box needs to have a label element associated with it with the text Bottom text
- Both text boxes should be empty when the page first loads
- Preview the generated meme
- The image element needs to have an html attribute set as follows: data-test-id="meme-image"
- This image element should show a working image when the page first loads
- Change the meme template (the background image)
- The meme template selector element needs to have a label element associated with it containing the text Meme template
- If the user follows the steps below, the doge meme template needs to be selected:
-Click on the label of the meme template selector
-Clear any existing value (eg. with a text box)
-Type the text doge
-Hit enter
- Download the meme by clicking on a button
-The button element needs to contain the text Download */
 }
